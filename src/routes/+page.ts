@@ -7,11 +7,23 @@ export const load: Load = async ({
 }): Promise<{
   trending: MovieList;
   featured: MovieDetails;
+  nowPlaying: MovieList;
+  upComing: MovieList;
 }> => {
-  const trending = await api.get<MovieList>({
-    fetch,
-    endpoint: 'trending/movie/day'
-  });
+  const [trending, nowPlaying, upComing] = await Promise.all([
+    await api.get<MovieList>({
+      fetch,
+      endpoint: 'trending/movie/day'
+    }),
+    await api.get<MovieList>({
+      fetch,
+      endpoint: 'movie/now_playing'
+    }),
+    await api.get<MovieList>({
+      fetch,
+      endpoint: 'movie/upcoming'
+    })
+  ]);
 
   const featured = await api.get<MovieDetails>({
     fetch,
@@ -21,5 +33,5 @@ export const load: Load = async ({
     }
   });
 
-  return { trending, featured };
+  return { trending, featured, nowPlaying, upComing };
 };

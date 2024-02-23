@@ -3,6 +3,7 @@
 
   import logo from '$lib/images/logo.svg';
   import tmdb from '$lib/images/tmdb.svg';
+  import { page } from '$app/stores';
 </script>
 
 <nav>
@@ -17,7 +18,7 @@
   </div>
 </nav>
 
-<main>
+<main class:infinite={$page.data.infinite}>
   <slot />
 </main>
 
@@ -30,6 +31,11 @@
 </footer>
 
 <style>
+  main.infinite {
+    height: 0;
+    flex: 1;
+    overflow: hidden;
+  }
   nav {
     display: flex;
     width: 100%;

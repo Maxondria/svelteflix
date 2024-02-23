@@ -2,8 +2,9 @@
   import Carousel from '$lib/components/Carousel.svelte';
   import Hero from '$lib/components/Hero.svelte';
   import { views } from '$lib/views.js';
+  import type { PageData } from './$types';
 
-  export let data;
+  export let data: PageData;
 </script>
 
 <h1 class="column">Top trending movies</h1>

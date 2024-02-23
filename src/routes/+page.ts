@@ -11,17 +11,20 @@ export const load: Load = async ({
   upComing: MovieList;
 }> => {
   const [trending, nowPlaying, upComing] = await Promise.all([
-    await api.get<MovieList>({
+    api.get<MovieList>({
       fetch,
-      endpoint: 'trending/movie/day'
+      endpoint: 'trending/movie/day',
+      params: { page: '1' }
     }),
-    await api.get<MovieList>({
+    api.get<MovieList>({
       fetch,
-      endpoint: 'movie/now_playing'
+      endpoint: 'movie/now_playing',
+      params: { page: '1' }
     }),
-    await api.get<MovieList>({
+    api.get<MovieList>({
       fetch,
-      endpoint: 'movie/upcoming'
+      endpoint: 'movie/upcoming',
+      params: { page: '1' }
     })
   ]);
 

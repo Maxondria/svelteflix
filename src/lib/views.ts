@@ -9,6 +9,12 @@ export enum ViewType {
   UPCOMING = 'upComing'
 }
 
+export const viewToViewTypeMap: Record<'trending' | 'now-playing' | 'upcoming', ViewType> = {
+  trending: ViewType.TRENDING,
+  'now-playing': ViewType.NOW_PLAYING,
+  upcoming: ViewType.UPCOMING
+};
+
 export const views: Record<ViewType, View> = {
   [ViewType.TRENDING]: {
     title: 'Trending',

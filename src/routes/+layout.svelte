@@ -1,14 +1,24 @@
 <script>
   import '../styles.css';
+  import * as api from '$lib/api';
 
   import logo from '$lib/images/logo.svg';
   import tmdb from '$lib/images/tmdb.svg';
   import { page } from '$app/stores';
 </script>
 
+<svelte:head>
+  <link rel="preconnect" href={api.baseURL} />
+  <title>{$page.data.title ?? 'SvelteFlix'}</title>
+  <meta name="description" content="Discover today's top movies" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SvelteFlix" />
+  <meta name="twitter:description" content="Discover today's top movies" />
+</svelte:head>
+
 <nav>
-  <a href="/">
-    <img src={logo} alt="SvelteFlix" />
+  <a class="logo" href="/">
+    <img class="logo" alt="SvelteFlix" src={logo} />
   </a>
 
   <div class="links">
@@ -31,29 +41,41 @@
 </footer>
 
 <style>
-  main.infinite {
-    height: 0;
-    flex: 1;
-    overflow: hidden;
+  nav,
+  footer {
+    padding: 1rem var(--side);
+    margin: 0 auto;
   }
+
   nav {
     display: flex;
     width: 100%;
     height: 3rem;
-    justify-content: space-between;
     align-items: center;
-    max-width: var(--column);
-    padding: 0 var(--side);
+    justify-content: space-between;
     color: var(--accent);
+    max-width: var(--column);
+  }
+
+  footer {
+    display: flex;
+    height: 5rem;
+    align-items: center;
   }
 
   a {
-    color: inherit;
     text-decoration: none;
   }
 
-  img {
-    height: 1rem;
+  .links {
+    display: flex;
+    align-items: center;
+  }
+
+  main.infinite {
+    height: 0;
+    flex: 1;
+    overflow: hidden;
   }
 
   .links {
@@ -61,9 +83,7 @@
     gap: 1em;
   }
 
-  footer {
-    display: flex;
-    justify-content: center;
-    height: 5rem;
+  .logo {
+    height: 100%;
   }
 </style>

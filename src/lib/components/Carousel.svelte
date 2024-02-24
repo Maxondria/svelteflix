@@ -1,19 +1,22 @@
 <script lang="ts">
+  import { smoothload } from '$lib/actions';
   import { media } from '$lib/api';
   import type { MovieListResult } from '$lib/types';
-  import type { View } from '$lib/views';
 
   export let movies: MovieListResult[];
-  export let view: View;
-  export let href: string;
+  export let href: string | undefined = undefined;
+  export let title: string;
 </script>
 
-<h2 class="column">{view.title} <a {href}>View all</a></h2>
+<h2 class="column">
+  {title}
+  {#if href}<a {href}>see all</a>{/if}
+</h2>
 
 <div class="carousel">
   {#each movies as movie (movie.poster_path)}
-    <a href="/movie/{movie.id}">
-      <img src={media({ filePath: movie.poster_path, width: 500 })} alt={movie.title} />
+    <a href="/movies/{movie.id}">
+      <img src={media({ filePath: movie.poster_path, width: 500 })} alt={movie.title} use:smoothload />
     </a>
   {/each}
 </div>
@@ -57,10 +60,4 @@
   img {
     width: 100%;
   }
-
-  /* @media (min-width: 40rem) {
-		.carousel {
-			height: 15rem;
-		}
-	} */
 </style>

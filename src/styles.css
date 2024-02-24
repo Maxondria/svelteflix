@@ -3,15 +3,10 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-}
-
-html {
-  --accent: hsl(1, 59%, 50%);
-  --column: 60rem;
+:root {
   --side: 1rem;
+  --column: 80rem;
+  --accent: hsl(1, 59%, 50%);
   font-family:
     system-ui,
     -apple-system,
@@ -24,22 +19,70 @@ html {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-  background: radial-gradient(circle at 50% 0%, hsl(0, 0%, 8%), hsl(0, 0%, 2%));
+  color: #ccc;
+  background: radial-gradient(circle at 50% 0%, hsl(0, 0%, 8%) 0%, hsl(0, 0%, 2%) 100%);
   background-attachment: fixed;
   background-size: 100vw 100vh;
-  color: #cccccc;
 }
 
 body {
+  margin: 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  margin: 0;
+}
+
+::selection {
+  background: var(--accent);
+  color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  font-family: Bahnschrift, "DIN Alternate", "Franklin Gothic Medium", "Nimbus Sans Narrow", sans-serif-condensed,
+    sans-serif;
+  color: white;
+  margin: 0 0 0.5em 0;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: 3.2rem;
+  margin-top: 1em;
+}
+
+a {
+  color: inherit;
+}
+
+input,
+button {
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .column {
-  max-width: var(--column);
+  padding-left: var(--side);
+  padding-right: var(--side);
   margin-left: auto;
   margin-right: auto;
-  padding: 0 var(--side);
+  max-width: var(--column);
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --side: 4rem;
+  }
 }

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { smoothload } from '$lib/actions';
   import { media } from '$lib/api';
   import type { MovieDetails } from '$lib/types';
 
@@ -10,12 +11,13 @@
 </script>
 
 <div class="column">
-  <a href="/movie/{movie.id}">
+  <a href="/movies/{movie.id}">
     <img
       class="backdrop"
       src={media({ filePath: backdrop.file_path, width: 1280 })}
       alt={movie.title}
       style="aspect-ratio: {backdrop.aspect_ratio}"
+      use:smoothload
     />
 
     <img
@@ -23,6 +25,7 @@
       src={media({ filePath: logo.file_path, width: 1280 })}
       alt={movie.title}
       style="aspect-ratio: {logo.aspect_ratio}"
+      use:smoothload
     />
   </a>
 </div>

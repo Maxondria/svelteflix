@@ -1,15 +1,17 @@
 <script lang="ts">
   import Carousel from '$lib/components/Carousel.svelte';
   import Hero from '$lib/components/Hero.svelte';
-  import { views } from '$lib/views.js';
   import type { PageData } from './$types';
 
   export let data: PageData;
 </script>
 
-<h1 class="column">Top trending movies</h1>
+<svelte:head>
+  <title>SvelteFlix</title>
+</svelte:head>
 
+<h1 class="column">Top trending movies</h1>
 <Hero movie={data.featured} />
-<Carousel movies={data.trending.results} view={views.trending} href="/movies/trending" />
-<Carousel movies={data.nowPlaying.results} view={views.nowPlaying} href="/movies/now-playing" />
-<Carousel movies={data.upComing.results} view={views.upComing} href="/movies/upcoming" />
+<Carousel movies={data.trending.results} href="/movies/trending" title="Trending" />
+<Carousel movies={data.nowPlaying.results} href="/movies/now-playing" title="Now playing" />
+<Carousel movies={data.upComing.results} href="/movies/upcoming" title="Upcoming" />

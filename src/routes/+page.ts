@@ -32,7 +32,7 @@ export const load: Load = async ({
     fetch,
     endpoint: `movie/${trending.results[0].id}`,
     params: {
-      append_to_response: 'images'
+      append_to_response: 'images,videos,recommendations'
     }
   });
 
